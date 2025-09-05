@@ -1,0 +1,175 @@
+.product-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 120px 20px;
+  justify-content: center;
+  align-items: flex-start;
+  animation: fadeInPage 0.8s ease;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 📷 Негизги сүрөт */
+.product-image-container {
+  flex: 1 1 400px;
+  max-width: 450px;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideFromLeft 0.8s ease forwards;
+}
+
+@keyframes slideFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.product-page-image {
+  width: 100%;
+  max-width: 400px;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+  margin-bottom: 15px;
+}
+
+.product-page-image:hover {
+  transform: scale(1.05);
+}
+
+/* 🖼 Thumbnail'дер */
+.image-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 55px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.thumbnail.active {
+  border-color: #0077ff;
+}
+
+/* 📄 Маалымат блогу */
+.product-info {
+  flex: 1 1 400px;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideFromRight 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slideFromRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.product-info h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.product-info .price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #0077ff;
+  margin-bottom: 20px;
+}
+
+.specs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.specs li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.add-to-cart {
+  display: inline-block;
+  background: linear-gradient(90deg, #ffeb3b, #ffc107);
+  color: #1e88e5;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.add-to-cart:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 📱 Адаптив */
+@media (max-width: 768px) {
+  .product-page {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-page-image {
+    max-width: 320px;
+    max-height: 250px;
+  }
+
+  .thumbnail {
+    width: 60px;
+    height: 50px;
+  }
+
+  .product-info {
+    animation-delay: 0.2s;
+  }
+}
+
+
+.back-button {
+  background: none;
+  border: none;
+  color: #0077ff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  color: #005fcc;
+  transform: translateX(-3px);
+}

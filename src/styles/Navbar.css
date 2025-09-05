@@ -1,0 +1,167 @@
+/* Навбар негизги стиль */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(30, 136, 229, 0.9); /* көгүш-шаffaf фон */
+  backdrop-filter: blur(10px); /* стакан эффект */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: slideDown 0.8s ease;
+}
+
+/* Navbar чыккандан кийин жылып келүү */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Логотип */
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.logo-main {
+  color: #ffeb3b;
+}
+
+.logo-sub {
+  color: #fff;
+  margin-left: 4px;
+}
+
+/* Линктер */
+.navbar-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  transition: right 0.4s ease-in-out;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #ffeb3b;
+}
+
+/* underline эффект */
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #ffeb3b;
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+/* Себет */
+.cart-link {
+  position: relative;
+}
+
+.cart-count {
+  background: #ff9800;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px 8px;
+  position: absolute;
+  top: -10px;
+  right: -20px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.bar {
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* анимациясы менен "X" болуп калат */
+.hamburger.open .top {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open .middle {
+  opacity: 0;
+}
+.hamburger.open .bottom {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    background: rgba(30, 136, 229, 0.95);
+    backdrop-filter: blur(10px);
+    height: 100vh;
+    width: 250px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 20px;
+    transition: right 0.4s ease;
+  }
+
+  .navbar-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

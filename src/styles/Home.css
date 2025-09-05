@@ -1,0 +1,96 @@
+.home-hero {
+  background: url("../assets/logo.png") center/cover no-repeat;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 200px 600px;
+  min-height: 30vh;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.hero-overlay p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ffeb3b, #ffc107);
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Фон сүрөтүнө slow zoom animation */
+.home-hero::before {
+  content: "";
+  background: url("") center/cover no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  animation: zoomBg 30s infinite alternate;
+}
+
+@keyframes zoomBg {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+/* 📱 Телефон үчүн */
+@media (max-width: 768px) {
+  .hero-overlay {
+    padding: 40px 20px;
+  }
+  .hero-overlay h1 {
+    font-size: 32px;
+  }
+  .hero-overlay p {
+    font-size: 16px;
+  }
+  .btn-primary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+/* 💻 Планшет үчүн */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .hero-overlay {
+    padding: 80px 100px;
+  }
+  .hero-overlay h1 {
+    font-size: 44px;
+  }
+  .hero-overlay p {
+    font-size: 18px;
+  }
+}

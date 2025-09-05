@@ -1,0 +1,77 @@
+/* About.css */
+.about {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 90px 20px;
+  background: linear-gradient(135deg, #e0f7ff, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+.about h1 {
+  font-size: 2.5rem;
+  color: #0077ff;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.about h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #0077ff;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.about p {
+  font-size: 1.2rem;
+  color: #333333;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.about .section {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.about .section h2 {
+  font-size: 1.8rem;
+  color: #005fcc;
+  margin-bottom: 12px;
+}
+
+.about .section p {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+/* Анимация пайда болуу */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивдик */
+@media (max-width: 768px) {
+  .about {
+    padding: 40px 15px;
+  }
+  .about h1 {
+    font-size: 2rem;
+  }
+  .about p {
+    font-size: 1rem;
+  }
+}

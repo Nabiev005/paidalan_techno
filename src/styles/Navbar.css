@@ -30,7 +30,7 @@
 
 /* Логотип сүрөтү */
 .navbar-logo img {
-  height: 180px;        /* чоң логотип */
+  height: 60px;        /* чоң логотип */
   width: auto;
   object-fit: contain;
   cursor: pointer;

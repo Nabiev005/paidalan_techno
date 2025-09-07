@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useFavorites } from "../context/FavoritesContext";
 import { useAuth } from "../context/AuthContext"; // 🔥 Auth контекст
 import { signInWithGoogle, logout } from "../firebase"; // 🔥 Firebase функциялары
-import Note from "../assets/logo3.png";
+import Note from "../assets/logo4.png";
 import "../styles/Navbar.css";
 
 const Navbar: React.FC = () => {

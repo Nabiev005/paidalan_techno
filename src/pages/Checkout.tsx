@@ -14,7 +14,7 @@ const Checkout: React.FC = () => {
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmitWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name || !phone || !address) {
@@ -36,16 +36,23 @@ const Checkout: React.FC = () => {
 %0A📦 Товары:%0A${orderDetails}%0A
 💰 Жалпы сумма: ${total.toLocaleString()} сом`;
 
-    // 👉 Өзүңдүн WhatsApp номерди ушул жерге кой
     const whatsappNumber = "996702952200";
 
-    // WhatsApp ачуу
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 
-    // Себетти тазалоо
     clearCart();
+    navigate("/success");
+  };
 
-    // Success барагына багыттоо
+  const handleFakePayment = () => {
+    if (!name || !phone || !address) {
+      alert("Бардык талааларды толтуруңуз!");
+      return;
+    }
+
+    // Тест төлөм — API болгондо ушул жерди чыныгы интеграция менен алмаштырабыз
+    alert("💳 Төлөм ийгиликтүү болду! (Тест)");
+    clearCart();
     navigate("/success");
   };
 
@@ -54,7 +61,7 @@ const Checkout: React.FC = () => {
       <h1>Заказ кылуу</h1>
       <h3>Жалпы сумма: {total.toLocaleString()} сом</h3>
 
-      <form className="checkout-form" onSubmit={handleSubmit}>
+      <form className="checkout-form" onSubmit={handleSubmitWhatsApp}>
         <label>
           Аты-жөнү:
           <input
@@ -85,9 +92,18 @@ const Checkout: React.FC = () => {
           />
         </label>
 
-        <button type="submit" className="checkout-btn">
-          📦 WhatsApp аркылуу заказ берүү
-        </button>
+        <div className="checkout-buttons">
+          <button type="submit" className="checkout-btn whatsapp">
+            📦 WhatsApp аркылуу заказ берүү
+          </button>
+          <button
+            type="button"
+            className="checkout-btn payment"
+            onClick={handleFakePayment}
+          >
+            💳 Карт менен төлөө (тест)
+          </button>
+        </div>
       </form>
     </div>
   );

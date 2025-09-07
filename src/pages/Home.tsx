@@ -12,7 +12,7 @@ const Home: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Paidalan_Techno
+          PAIDALAN_TECHNO
         </motion.h1>
 
         <motion.p
@@ -27,10 +27,10 @@ const Home: React.FC = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.6 }}
-        >
-          <Link to="/catalog" className="btn-primary">Каталогго өтүү</Link>
+        > 
+          <Link to="/catalog" className="btn-primary1">Каталогго өтүү</Link>
         </motion.div>
-      </div>
+      </div>  
     </div>
   );
 };

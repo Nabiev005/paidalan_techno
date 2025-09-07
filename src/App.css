@@ -1,3 +1,22 @@
 body{
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* экрандын толук бийиктигин ээлейт */
+}
+
+.main-content {
+  flex: 1; /* контентти толтуруп, футерди акыркыга түртөт */
+  padding-top: 80px; /* Navbar үчүн боштук */
+  padding-bottom: 20px; /* Footer менен контент кагышпасын */
+}

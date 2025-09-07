@@ -1,5 +1,5 @@
 .home-hero {
-  background: url("../assets/logo.png") center/cover no-repeat;
+  background: url("../assets/notebooks1.png") center/cover no-repeat;
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -11,8 +11,8 @@
 
 .hero-overlay {
   background: rgba(0, 0, 0, 0.5);
-  padding: 200px 600px;
-  min-height: 30vh;
+  padding: 180px 500px;
+  /* min-height: 30vh; */
   border-radius: 16px;
   text-align: center;
   color: white;
@@ -21,24 +21,33 @@
 .hero-overlay h1 {
   font-size: 56px;
   margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 0 8px 12px rgba(0,0,0,0.3);
 }
 
 .hero-overlay p {
   font-size: 20px;
   margin-bottom: 30px;
+   text-shadow: 0 8px 12px rgba(0,0,0,0.3);
 }
 
-.btn-primary {
-  background: linear-gradient(90deg, #ffeb3b, #ffc107);
+
+
+
+.btn-primary1 {
+  background-color: #1e88e5;
   padding: 14px 30px;
   border-radius: 10px;
   font-weight: bold;
   transition: transform 0.3s, box-shadow 0.3s;
   text-decoration: none;
   display: inline-block;
+  color: white;
 }
 
-.btn-primary:hover {
+
+.btn-primary1:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }

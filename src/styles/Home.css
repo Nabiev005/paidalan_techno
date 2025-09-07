@@ -10,7 +10,7 @@
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
   padding: 180px 500px;
   /* min-height: 30vh; */
   border-radius: 16px;

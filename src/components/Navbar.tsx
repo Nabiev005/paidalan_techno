@@ -10,7 +10,7 @@ import "../styles/Navbar.css";
 const Navbar: React.FC = () => {
   const { cart } = useCart();
   const { favorites } = useFavorites();
-  const { user } = useAuth(); // 🔥 колдонуучу абалы
+  const { user, isAdmin } = useAuth(); // 👈 isAdmin коштук
   const [menuOpen, setMenuOpen] = useState(false);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -41,6 +41,13 @@ const Navbar: React.FC = () => {
           {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
         </Link>
 
+        {/* 🔥 Админ гана көрөт */}
+        {isAdmin && (
+          <Link to="/admin" className="admin-link" onClick={() => setMenuOpen(false)}>
+            ⚡ Админ Панель
+          </Link>
+        )}
+
         {/* 🔥 Кирүү / Чыгуу + Профиль */}
         <div className="auth-section">
           {user ? (
@@ -62,13 +69,13 @@ const Navbar: React.FC = () => {
             </>
           ) : (
             <button
-                  className="auth-btn1"
-                  onClick={async () => {
-                    await signInWithGoogle();
-                  }}
+              className="auth-btn1"
+              onClick={async () => {
+                await signInWithGoogle();
+              }}
             >
-  Google менен кирүү
-</button>
+              Google менен кирүү
+            </button>
           )}
         </div>
       </div>

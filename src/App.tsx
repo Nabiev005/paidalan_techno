@@ -1,8 +1,9 @@
 // src/App.tsx
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import Product from "./pages/Product";
@@ -11,11 +12,35 @@ import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
 import About from "./pages/About";
 import Favorites from "./pages/Favorites";
-import Profile from "./pages/Profile"; // 👈 Профиль барагы
+import Profile from "./pages/Profile"; 
+import AdminPanel from "./pages/AdminPanel"; 
+
 import { CartProvider } from "./context/CartContext";
 import { FavoritesProvider } from "./context/FavoritesContext";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./App.css";
+
+// 🔒 Корголгон маршрут
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) return <p>Жүктөлүп жатат...</p>;
+
+  return user ? <>{children}</> : <Navigate to="/" />;
+};
+
+// 🔑 Админ маршрут
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { loading, isAdmin } = useAuth();
+
+  if (loading) return <p>Жүктөлүп жатат...</p>;
+
+  return isAdmin ? <>{children}</> : <Navigate to="/" />;
+};
 
 const App: React.FC = () => {
   return (
@@ -34,10 +59,32 @@ const App: React.FC = () => {
                 <Route path="/success" element={<Success />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/favorites" element={<Favorites />} />
-                <Route path="/profile" element={<Profile />} /> {/* 👈 Коштук */}
+
+                {/* 👤 Профиль */}
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+
+                {/* 👑 Админ панель */}
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminRoute>
+                      <AdminPanel />
+                    </AdminRoute>
+                  }
+                />
               </Routes>
             </main>
             <Footer />
+
+            {/* 🔔 Toast контейнер */}
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
           </div>
         </FavoritesProvider>
       </CartProvider>

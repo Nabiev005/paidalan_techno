@@ -198,3 +198,104 @@
     height: 150px;
   }
 }
+
+
+/* Product badges */
+.product-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  animation: fadeIn 0.5s ease;
+}
+
+.badge.new {
+  background: #28a745; /* жашыл */
+}
+
+.badge.discount {
+  background: #dc3545; /* кызыл */
+}
+
+/* Баа: эски жана жаңы */
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.new-price {
+  color: #e63946;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+
+/* =========== */
+/* Action buttons (Толук маалымат, Себетке кошуу, Избранное) */
+
+/* Кнопкалар (actions) */
+.product-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Толук маалымат */
+.action-btn.info {
+  background: #0077ff;
+  color: #fff;
+}
+.action-btn.info:hover {
+  background: #0056cc;
+}
+
+/* Себетке кошуу */
+.action-btn.cart {
+  background: #28a745;
+  color: #fff;
+}
+.action-btn.cart:hover {
+  background: #1e7e34;
+}
+
+/* Избранное */
+.action-btn.favorite {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  font-size: 1.2rem;
+}
+.action-btn.favorite:hover {
+  background: #ffe6e6;
+}

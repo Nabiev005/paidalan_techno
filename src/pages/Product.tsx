@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { toast } from "react-toastify";
+
 import Apple from "../assets/Apple1.jpg";
 import Asus from "../assets/Asus1.jpg";
 import Hp from "../assets/HPPavilion.jpg";
@@ -179,6 +181,20 @@ const Product: React.FC = () => {
     return <h2>Продукт табылган жок</h2>;
   }
 
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: selectedImage,
+    });
+
+    toast.success(`✅ ${product.name} себетке кошулду!`, {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  };
+
   return (
     <div className="product-page">
       <button className="back-button" onClick={() => navigate("/catalog")}>
@@ -215,17 +231,7 @@ const Product: React.FC = () => {
           <li><strong>Display:</strong> {product.specs.display}</li>
           <li><strong>GPU:</strong> {product.specs.gpu}</li>
         </ul>
-        <button
-          className="add-to-cart"
-          onClick={() =>
-            addToCart({
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              image: selectedImage,
-            })
-          }
-        >
+        <button className="add-to-cart" onClick={handleAddToCart}>
           🛒 Себетке кошуу
         </button>
       </div>

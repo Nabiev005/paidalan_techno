@@ -19,6 +19,7 @@ const Catalog: React.FC = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
+  // Товарлар массиви
   const products = [
     { id: 1, name: "Apple MacBook Air M1", brand: "Apple", price: 74990, discount: 10, isNew: true, image: Apple },
     { id: 2, name: "Apple MacBook Pro 14 M2", brand: "Apple", price: 125000, discount: 0, isNew: false, image: Apple },

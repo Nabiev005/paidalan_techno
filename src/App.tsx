@@ -22,6 +22,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import ChatBot from "./components/ChatBot"; // ✅ ЧатБот коштук
 import "./App.css";
 
 // 🔒 Корголгон маршрут
@@ -82,6 +83,9 @@ const App: React.FC = () => {
               </Routes>
             </main>
             <Footer />
+
+            {/* 🤖 Чат-бот */}
+            <ChatBot />
 
             {/* 🔔 Toast контейнер */}
             <ToastContainer position="top-right" autoClose={3000} hideProgressBar />

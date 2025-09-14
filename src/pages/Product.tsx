@@ -195,6 +195,21 @@ const Product: React.FC = () => {
     });
   };
 
+  // 👉 Рассрочкага өткөрүү
+  const handleInstallment = (months: number) => {
+    const amount = Math.ceil(product.price / months);
+    navigate("/checkout", {
+      state: {
+        installment: {
+          months,
+          amount,
+          total: product.price,
+          productName: product.name,
+        },
+      },
+    });
+  };
+
   return (
     <div className="product-page">
       <button className="back-button" onClick={() => navigate("/catalog")}>
@@ -224,6 +239,7 @@ const Product: React.FC = () => {
       <div className="product-info">
         <h1>{product.name}</h1>
         <p className="price">{product.price.toLocaleString()} сом</p>
+
         <ul className="specs">
           <li><strong>CPU:</strong> {product.specs.cpu}</li>
           <li><strong>RAM:</strong> {product.specs.ram}</li>
@@ -231,6 +247,23 @@ const Product: React.FC = () => {
           <li><strong>Display:</strong> {product.specs.display}</li>
           <li><strong>GPU:</strong> {product.specs.gpu}</li>
         </ul>
+
+        {/* 💳 Рассрочка блогу */}
+        <div className="installment-plan">
+          <h3>💳 Рассрочка менен алуу</h3>
+          <div className="installment-options">
+            <button className="installment-btn" onClick={() => handleInstallment(3)}>
+              3 ай: {(product.price / 3).toLocaleString()} сом
+            </button>
+            <button className="installment-btn" onClick={() => handleInstallment(6)}>
+              6 ай: {(product.price / 6).toLocaleString()} сом
+            </button>
+            <button className="installment-btn" onClick={() => handleInstallment(12)}>
+              12 ай: {(product.price / 12).toLocaleString()} сом
+            </button>
+          </div>
+        </div>
+
         <button className="add-to-cart" onClick={handleAddToCart}>
           🛒 Себетке кошуу
         </button>

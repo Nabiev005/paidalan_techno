@@ -7,6 +7,12 @@ const ChatBot: React.FC = () => {
     { from: "bot", text: "Сиздин төмөндөгү суроолоруңузга жооп бере алам 👇" },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+
+  // Теманы жана фонду сактоо
+  const [darkMode, setDarkMode] = useState(false);
+  const [bgColor, setBgColor] = useState("default");
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,6 +36,7 @@ const ChatBot: React.FC = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
+  // 👉 Тема тандаганда жооп берүү
   const handleTopicClick = (topicId: string) => {
     const userMsg = topics.find((t) => t.id === topicId)?.label || "";
     setMessages((prev) => [...prev, { from: "user", text: userMsg }]);
@@ -63,16 +70,76 @@ const ChatBot: React.FC = () => {
     }, 800);
   };
 
+  // 👉 Чатты тазалоо
+  const clearChat = () => {
+    setMessages([{ from: "bot", text: "Чат тазаланды. Төмөндөн кайра тандай аласыз 👇" }]);
+    setShowMenu(false);
+  };
+
+  // 👉 Жардам
+  const showHelp = () => {
+    setMessages((prev) => [
+      ...prev,
+      { from: "bot", text: "ℹ️ Жардам: Төмөндөн керектүү теманы тандап жооп ала аласыз." },
+    ]);
+    setShowMenu(false);
+  };
+
   return (
-    <div className="chatbot-container">
+    <div className={`chatbot-container ${darkMode ? "dark" : ""}`}>
       {isOpen && (
-        <div className="chatbot">
+        <div className={`chatbot ${bgColor}`}>
           <div className="chat-header">
             <span>💬 Ноутбуктар боюнча жардамчы PAIDALAN_TECHNO</span>
-            <button className="close-btn" onClick={() => setIsOpen(false)}>
-              ✖
-            </button>
+            <div className="header-actions">
+              <button className="menu-btn" onClick={() => setShowMenu(!showMenu)}>
+                ⋮
+              </button>
+              <button className="close-btn" onClick={() => setIsOpen(false)}>✖</button>
+            </div>
+
+            {/* ⋮ Меню */}
+            {showMenu && (
+              <div className="menu-dropdown">
+                <button onClick={clearChat}>🗑️ Чатты тазалоо</button>
+                <button onClick={showHelp}>ℹ️ Жардам</button>
+                <button onClick={() => {setShowSettings(true); setShowMenu(false);}}>
+                  ⚙️ Жөндөөлөр
+                </button>
+              </div>
+            )}
           </div>
+
+          {/* Жөндөөлөр терезеси */}
+          {showSettings && (
+            <div className="settings-popup">
+              <h4>⚙️ Жөндөөлөр</h4>
+              <div className="setting-item">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={darkMode}
+                    onChange={() => setDarkMode(!darkMode)}
+                  />
+                  🌙 Dark Mode
+                </label>
+              </div>
+
+              <div className="setting-item">
+                <label>🎨 Фонду танда:</label>
+                <select value={bgColor} onChange={(e) => setBgColor(e.target.value)}>
+                  <option value="default">Ак фон</option>
+                  <option value="blue">Көк фон</option>
+                  <option value="green">Жашыл фон</option>
+                  <option value="gradient">Градиент</option>
+                </select>
+              </div>
+
+              <button className="close-settings" onClick={() => setShowSettings(false)}>
+                Жабуу
+              </button>
+            </div>
+          )}
 
           <div className="chat-window">
             {messages.map((msg, i) => (
@@ -89,7 +156,6 @@ const ChatBot: React.FC = () => {
               </div>
             )}
 
-            {/* 📌 Автоматтык скролл үчүн маяк */}
             <div ref={messagesEndRef} />
           </div>
 

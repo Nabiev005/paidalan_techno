@@ -173,3 +173,121 @@
   color: #005fcc;
   transform: translateX(-3px);
 }
+
+
+
+/* 💳 Рассрочка блогу */
+.installment-plan {
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  animation: fadeInInstallment 0.8s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.installment-plan:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.installment-plan h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #0077ff;
+}
+
+.installment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.installment-option {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.installment-option:hover {
+  background: rgba(0, 119, 255, 0.15);
+  transform: scale(1.05);
+}
+
+@keyframes fadeInInstallment {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.installment-plan {
+  margin: 25px 0;
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f0f7ff, #ffffff);
+  box-shadow: 0 6px 18px rgba(0, 119, 255, 0.08);
+  animation: fadeIn 0.6s ease;
+}
+
+.installment-plan h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #0077ff;
+}
+
+.installment-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.installment-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #0077ff, #00b4ff);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.installment-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #005fcc, #0094cc);
+  box-shadow: 0 6px 16px rgba(0, 119, 255, 0.25);
+}
+
+.installment-btn:active {
+  transform: scale(0.96);
+}
+
+/* 📱 Адаптив */
+@media (max-width: 480px) {
+  .installment-options {
+    flex-direction: column;
+  }
+
+  .installment-btn {
+    width: 100%;
+  }
+}

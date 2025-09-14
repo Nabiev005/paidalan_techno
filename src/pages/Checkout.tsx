@@ -1,18 +1,24 @@
 // src/pages/Checkout.tsx
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/Checkout.css";
 
 const Checkout: React.FC = () => {
   const { cart, clearCart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Рассрочка болсо ушул жерден алабыз
+  const installment = (location.state as any)?.installment || null;
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = installment
+    ? installment.total
+    : cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleSubmitWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,12 +28,14 @@ const Checkout: React.FC = () => {
       return;
     }
 
-    const orderDetails = cart
-      .map(
-        (item) =>
-          `${item.name} - ${item.quantity} даана × ${item.price.toLocaleString()} сом`
-      )
-      .join("%0A");
+    const orderDetails = installment
+      ? `${installment.productName} - ${installment.months} ай × ${installment.amount.toLocaleString()} сом`
+      : cart
+          .map(
+            (item) =>
+              `${item.name} - ${item.quantity} даана × ${item.price.toLocaleString()} сом`
+          )
+          .join("%0A");
 
     const message = `🛒 Жаңы заказ:%0A
 👤 Кардар: ${name}%0A
@@ -37,7 +45,6 @@ const Checkout: React.FC = () => {
 💰 Жалпы сумма: ${total.toLocaleString()} сом`;
 
     const whatsappNumber = "996702952200";
-
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 
     clearCart();
@@ -50,7 +57,6 @@ const Checkout: React.FC = () => {
       return;
     }
 
-    // Тест төлөм — API болгондо ушул жерди чыныгы интеграция менен алмаштырабыз
     alert("💳 Төлөм ийгиликтүү болду! (Тест)");
     clearCart();
     navigate("/success");
@@ -60,6 +66,13 @@ const Checkout: React.FC = () => {
     <div className="checkout">
       <h1>Заказ кылуу</h1>
       <h3>Жалпы сумма: {total.toLocaleString()} сом</h3>
+
+      {installment && (
+        <p>
+          💳 Рассрочка: {installment.months} ай ×{" "}
+          {installment.amount.toLocaleString()} сом
+        </p>
+      )}
 
       <form className="checkout-form" onSubmit={handleSubmitWhatsApp}>
         <label>
